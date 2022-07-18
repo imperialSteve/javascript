@@ -3691,7 +3691,7 @@ Other Style Guides
     eslint: [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals)
 
     > Why? The global `isNaN` coerces non-numbers to numbers, returning true for anything that coerces to NaN.
-    > If this behavior is desired, make it explicit.
+    > If this behavior is desired, make it explicit. Number.isNaN is functionally a working equality check for if something is NaN. Do your own conversion of the input.
 
     ```javascript
     // bad
@@ -3699,7 +3699,7 @@ Other Style Guides
     isNaN('1.2.3'); // true
 
     // good
-    Number.isNaN('1.2.3'); // false
+    Number.isNaN(Number('1.2')); // false
     Number.isNaN(Number('1.2.3')); // true
     ```
 
